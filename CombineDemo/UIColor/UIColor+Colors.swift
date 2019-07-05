@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-    static let background = UIColor(named: "background")
+    static let background = UIColor(named: "mainBackground")
     static let valid = UIColor(named: "valid")
     static let nonValid = UIColor(named: "nonValid")
 }
