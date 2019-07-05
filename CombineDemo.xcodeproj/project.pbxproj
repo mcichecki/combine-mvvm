@@ -21,7 +21,6 @@
 		CDCE66CD22C8B74400B1D54C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE66CC22C8B74400B1D54C /* ListViewController.swift */; };
 		CDCE66CF22C8B7A500B1D54C /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE66CE22C8B7A500B1D54C /* ListViewModel.swift */; };
 		CDCE66D122C8B7B300B1D54C /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE66D022C8B7B300B1D54C /* ListView.swift */; };
-		CDCE66D622C8BA6500B1D54C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE66D522C8BA6500B1D54C /* Constants.swift */; };
 		CDCE66D822C8BABB00B1D54C /* PlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE66D722C8BABB00B1D54C /* PlayersService.swift */; };
 		CDCE66DA22C8BB8D00B1D54C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE66D922C8BB8D00B1D54C /* Player.swift */; };
 		CDCE66DC22C8BBDF00B1D54C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE66DB22C8BBDF00B1D54C /* Team.swift */; };
@@ -61,7 +60,6 @@
 		CDCE66CC22C8B74400B1D54C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		CDCE66CE22C8B7A500B1D54C /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		CDCE66D022C8B7B300B1D54C /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		CDCE66D522C8BA6500B1D54C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CDCE66D722C8BABB00B1D54C /* PlayersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersService.swift; sourceTree = "<group>"; };
 		CDCE66D922C8BB8D00B1D54C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CDCE66DB22C8BBDF00B1D54C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 		CDCE66D222C8B9AF00B1D54C /* API */ = {
 			isa = PBXGroup;
 			children = (
-				CDCE66D522C8BA6500B1D54C /* Constants.swift */,
 				CDCE66D422C8B9BB00B1D54C /* Model */,
 				CDCE66D322C8B9B600B1D54C /* Service */,
 			);
@@ -366,7 +363,6 @@
 				CDCCEE9522AAFF3A00D1A8F9 /* SceneDelegate.swift in Sources */,
 				CDFDFB5922C934E300117F44 /* PlayerTableViewCell.swift in Sources */,
 				CDCE66D822C8BABB00B1D54C /* PlayersService.swift in Sources */,
-				CDCE66D622C8BA6500B1D54C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,8 @@ protocol PlayersServiceProtocol {
     func get(searchTerm: String?) -> AnyPublisher<[Player], Error>
 }
 
+//let apiKey: String = "" // use your rapidapi
+
 final class PlayersService: PlayersServiceProtocol {
     
     func get(searchTerm: String?) -> AnyPublisher<[Player], Error> {
