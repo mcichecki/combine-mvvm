@@ -9,10 +9,18 @@
 import Foundation
 import Combine
 
+enum ListViewModelState {
+    case loading
+    case finishedLoading
+    case error(Error)
+}
+
 final class ListViewModel {
     @Published var searchText: String = ""
     
     @Published private(set) var playersViewModels: [PlayerCellViewModel] = []
+    
+    @Published private(set) var state: ListViewModelState = .loading
     
     private let playersService: PlayersServiceProtocol
     
@@ -25,12 +33,13 @@ final class ListViewModel {
     }
     
     func fetchPlayers(with searchTerm: String?) {
+        state = .loading
         _ = playersService
             .get(searchTerm: searchTerm)
-            .sink(receiveCompletion: { (completion) in
+            .sink(receiveCompletion: { [weak self] (completion) in
                 switch completion {
-                case .failure(let error): print("--- ERROR: \(error)")
-                case .finished: print("--- FINISHED")
+                case .failure(let error): self?.state = .error(error)
+                case .finished: self?.state = .finishedLoading
                 }
             }) { [weak self] players in
                 self?.playersViewModels = players.map { PlayerCellViewModel(player: $0) }

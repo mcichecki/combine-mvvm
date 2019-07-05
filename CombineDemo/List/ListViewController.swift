@@ -21,7 +21,7 @@ final class ListViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
     override func loadView() {
         view = contentView
     }
@@ -52,10 +52,31 @@ final class ListViewController: UIViewController {
                 .sink { [weak self] viewModels in
                     self?.contentView.tableView.reloadData()
             }
+            
+            _ = viewModel.$state
+                .receive(on: RunLoop.main)
+                .sink { [weak self] state in
+                    switch state {
+                    case .loading: self?.contentView.startLoading()
+                    case .finishedLoading: self?.contentView.finishLoading()
+                    case .error(let error):
+                        self?.contentView.finishLoading()
+                        self?.showError(error)
+                    }
+            }
         }
         
         bindViewToViewModel()
         bindViewModelToView()
+    }
+    
+    private func showError(_ error: Error) {
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
