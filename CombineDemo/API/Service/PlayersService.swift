@@ -19,7 +19,7 @@ protocol PlayersServiceProtocol {
     func get(searchTerm: String?) -> AnyPublisher<[Player], Error>
 }
 
-//let apiKey: String = "" // use your rapidapi
+let apiKey: String = "" // use your rapidapi
 
 final class PlayersService: PlayersServiceProtocol {
     
@@ -52,7 +52,8 @@ final class PlayersService: PlayersServiceProtocol {
             }
         }
         .handleEvents(receiveSubscription: onSubscription, receiveCancel: onCancel)
-            .eraseToAnyPublisher()
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
     }
     
     private func getUrlRequest(searchTerm: String?) -> URLRequest? {

@@ -22,12 +22,14 @@ final class ListViewModel {
     
     @Published private(set) var state: ListViewModelState = .loading
     
+    private var searchTextCancellable: AnyCancellable?
+    
     private let playersService: PlayersServiceProtocol
     
     init(playersService: PlayersServiceProtocol = PlayersService()) {
         self.playersService = playersService
         
-        _ = $searchText.sink { [weak self] in
+        searchTextCancellable = $searchText.sink { [weak self] in
             self?.fetchPlayers(with: $0)
         }
     }

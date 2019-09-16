@@ -10,9 +10,9 @@ import Foundation
 import Combine
 
 final class LoginViewModel {
-    @InitialPublished var login: String = ""
+    @Published var login: String = ""
     
-    @InitialPublished var password: String = ""
+    @Published var password: String = ""
     
     lazy var validatedPassword = Publishers.CombineLatest($login, $password)
         .map { $0.count > 2 && $1.count > 2 }

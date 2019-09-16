@@ -24,7 +24,7 @@ struct InitialPublished<Value>: Publisher {
         }
     }
     
-    init(initialValue: Value) {
+    init(wrappedValue initialValue: Value) {
         subject = CurrentValueSubject(initialValue)
     }
     
