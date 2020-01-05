@@ -3,15 +3,16 @@ name: Unit Tests
 on: [push]
 
 jobs:
-  build:
-
+  test:
     runs-on: macOS-latest
-
+    strategy:
+      matrix:
+        destination: ['platform=iOS Simulator,name=iPhone 11,OS=13.1']
     steps:
     - uses: actions/checkout@v1
     - name: Run unit tests
       run: |
         xcodebuild -project CombineDemo.xcodeproj \
         -scheme CombineDemoTests \
-        -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' \
+        -destination "${destination}" \
         test | xcpretty
