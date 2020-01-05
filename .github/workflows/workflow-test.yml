@@ -16,3 +16,5 @@ jobs:
         -scheme CombineDemoTests \
         -destination "${destination}" \
         test | xcpretty
+      env:
+        destination: ${{ matrix.destination }}
