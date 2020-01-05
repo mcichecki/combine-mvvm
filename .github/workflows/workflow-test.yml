@@ -15,6 +15,6 @@ jobs:
         xcodebuild -project CombineDemo.xcodeproj \
         -scheme CombineDemoTests \
         -destination "${destination}" \
-        test | xcpretty
+        test
       env:
         destination: ${{ matrix.destination }}
