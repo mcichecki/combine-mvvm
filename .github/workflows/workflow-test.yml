@@ -10,11 +10,14 @@ jobs:
         destination: ['platform=iOS Simulator,name=iPhone 11,OS=13.1']
     steps:
     - uses: actions/checkout@v1
+    - name: Set pipefail
+    - run: |
+        set -eo pipefail
     - name: Run unit tests
       run: |
         xcodebuild -project CombineDemo.xcodeproj \
         -scheme CombineDemoTests \
         -destination "${destination}" \
-        test
+        test | xcpretty
       env:
         destination: ${{ matrix.destination }}
