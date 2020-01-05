@@ -51,7 +51,7 @@ class LoginViewModelTests: XCTestCase {
     func test_validatedPassword_WhenBothStringsAreLongerThanTwo_ShouldProduceTrue() {
         // given
         subject.login = "login"
-        subject.password = "a"
+        subject.password = "password"
         
         // when
         _ = subject.validatedPassword.sink {
