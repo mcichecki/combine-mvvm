@@ -1,6 +1,6 @@
 name: Unit Tests
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
@@ -10,4 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run unit tests
-      run: xcodebuild -project CombineDemo.xcodeproj -scheme CombineDemoTests -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' test | xcpretty
+      run: xcodebuild -project CombineDemo.xcodeproj \
+      -scheme CombineDemoTests \
+      -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' \
+      test | xcpretty
