@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Set pipefail
-    - run: |
+      run: |
         set -eo pipefail
     - name: Run unit tests
       run: |
