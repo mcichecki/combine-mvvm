@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Combine
 
 final class ListViewController: UIViewController {
     private lazy var contentView = ListView()
-    
     private let viewModel: ListViewModel
+    private var bindings = Set<AnyCancellable>()
     
     init(viewModel: ListViewModel = ListViewModel()) {
         self.viewModel = viewModel
@@ -40,30 +41,39 @@ final class ListViewController: UIViewController {
     
     private func setUpBindings() {
         func bindViewToViewModel() {
-            _ = contentView.searchTextField.textPublisher
+            contentView.searchTextField.textPublisher
                 .debounce(for: 0.5, scheduler: RunLoop.main)
                 .removeDuplicates()
                 .assign(to: \.searchText, on: viewModel)
+                .store(in: &bindings)
         }
         
         func bindViewModelToView() {
-            _ = viewModel.$playersViewModels
-                .receive(on: RunLoop.main)
-                .sink { [weak self] viewModels in
-                    self?.contentView.tableView.reloadData()
+            let viewModelsValueHandler: ([PlayerCellViewModel]) -> Void = { [weak self] _ in
+                self?.contentView.tableView.reloadData()
             }
             
-            _ = viewModel.$state
+            viewModel.$playersViewModels
                 .receive(on: RunLoop.main)
-                .sink { [weak self] state in
-                    switch state {
-                    case .loading: self?.contentView.startLoading()
-                    case .finishedLoading: self?.contentView.finishLoading()
-                    case .error(let error):
-                        self?.contentView.finishLoading()
-                        self?.showError(error)
-                    }
+                .sink(receiveValue: viewModelsValueHandler)
+                .store(in: &bindings)
+            
+            let stateValueHandler: (ListViewModelState) -> Void = { [weak self] state in
+                switch state {
+                case .loading:
+                    self?.contentView.startLoading()
+                case .finishedLoading:
+                    self?.contentView.finishLoading()
+                case .error(let error):
+                    self?.contentView.finishLoading()
+                    self?.showError(error)
+                }
             }
+            
+            viewModel.$state
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: stateValueHandler)
+                .store(in: &bindings)
         }
         
         bindViewToViewModel()

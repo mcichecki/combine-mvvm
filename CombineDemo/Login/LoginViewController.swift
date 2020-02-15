@@ -11,8 +11,8 @@ import Combine
 
 class LoginViewController: UIViewController {
     private lazy var contentView = LoginView()
-    
     private let viewModel: LoginViewModel
+    private var bindings = Set<AnyCancellable>()
     
     init(viewModel: LoginViewModel = LoginViewModel()) {
         self.viewModel = viewModel
@@ -42,19 +42,22 @@ class LoginViewController: UIViewController {
     
     private func setUpBindings() {
         func bindViewToViewModel() {
-            _ = contentView.loginTextField.textPublisher
+            contentView.loginTextField.textPublisher
                 .receive(on: DispatchQueue.main)
                 .assign(to: \.login, on: viewModel)
+                .store(in: &bindings)
             
-            _ = contentView.passwordTextField.textPublisher
+            contentView.passwordTextField.textPublisher
                 .receive(on: RunLoop.main)
                 .assign(to: \.password, on: viewModel)
+                .store(in: &bindings)
         }
         
         func bindViewModelToView() {
-            _ = viewModel.validatedPassword
+            viewModel.validatedPassword
                 .receive(on: RunLoop.main)
                 .assign(to: \.isValid, on: contentView.loginButton)
+                .store(in: &bindings)
         }
         
         bindViewToViewModel()

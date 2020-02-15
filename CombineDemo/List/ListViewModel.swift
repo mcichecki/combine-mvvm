@@ -17,34 +17,37 @@ enum ListViewModelState {
 
 final class ListViewModel {
     @Published var searchText: String = ""
-    
     @Published private(set) var playersViewModels: [PlayerCellViewModel] = []
-    
     @Published private(set) var state: ListViewModelState = .loading
     
-    private var searchTextCancellable: AnyCancellable?
-    
     private let playersService: PlayersServiceProtocol
+    private var bindings = Set<AnyCancellable>()
     
     init(playersService: PlayersServiceProtocol = PlayersService()) {
         self.playersService = playersService
         
-        searchTextCancellable = $searchText.sink { [weak self] in
-            self?.fetchPlayers(with: $0)
-        }
+        $searchText
+            .sink { [weak self] in self?.fetchPlayers(with: $0) }
+            .store(in: &bindings)
     }
     
     func fetchPlayers(with searchTerm: String?) {
         state = .loading
-        _ = playersService
-            .get(searchTerm: searchTerm)
-            .sink(receiveCompletion: { [weak self] (completion) in
-                switch completion {
-                case .failure(let error): self?.state = .error(error)
-                case .finished: self?.state = .finishedLoading
-                }
-            }) { [weak self] players in
-                self?.playersViewModels = players.map { PlayerCellViewModel(player: $0) }
+        
+        let searchTermCompletionHandler: (Subscribers.Completion<Error>) -> Void = { [weak self] completion in
+            switch completion {
+            case .failure(let error): self?.state = .error(error)
+            case .finished: self?.state = .finishedLoading
+            }
         }
+        
+        let searchTermValueHandler: ([Player]) -> Void = { [weak self] players in
+            self?.playersViewModels = players.map { PlayerCellViewModel(player: $0) }
+        }
+        
+        playersService
+            .get(searchTerm: searchTerm)
+            .sink(receiveCompletion: searchTermCompletionHandler, receiveValue: searchTermValueHandler)
+            .store(in: &bindings)
     }
 }
