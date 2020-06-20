@@ -1,6 +1,6 @@
 # Combine + UIKit + MVVM
 
-![Build & Tests](https://github.com/mcichecki/Combine-MVVM/workflows/Unit%20Tests/badge.svg)
+![Build & Tests](https://github.com/mcichecki/Combine-MVVM/workflows/Unit%20Tests/badge.svg?branch=master)
 
 ### Sample project with Combine, UIKit and MVVM architecture
 
