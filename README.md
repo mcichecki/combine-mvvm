@@ -1,5 +1,7 @@
 # Combine + UIKit + MVVM
 
+![Build & Tests](https://github.com/mcichecki/Combine-MVVM/workflows/Unit%20Tests/badge.svg)
+
 ### Sample project with Combine, UIKit and MVVM architecture
 
 This simple app consists of two screens and includes basic concepts that are common usecases for using reactive programming.
