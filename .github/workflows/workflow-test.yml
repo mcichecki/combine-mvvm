@@ -7,7 +7,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
-        destination: ['platform=iOS Simulator,name=iPhone 11,OS=13.3']
+        destination: ['platform=iOS Simulator,name=iPhone 11,OS=13.5']
     steps:
     - uses: actions/checkout@v1
     - name: Run unit tests
