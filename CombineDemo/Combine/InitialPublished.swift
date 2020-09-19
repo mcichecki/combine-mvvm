@@ -3,7 +3,6 @@
 //  CombineDemo
 //
 //  Created by Michal Cichecki on 01/07/2019.
-//  Copyright © 2019 codeuqest. All rights reserved.
 //
 
 import Combine

@@ -3,7 +3,6 @@
 //  CombineDemoTests
 //
 //  Created by Michal Cichecki on 04/07/2019.
-//  Copyright © 2019 codeuqest. All rights reserved.
 //
 
 @testable import CombineDemo
