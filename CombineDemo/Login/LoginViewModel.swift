@@ -14,7 +14,7 @@ final class LoginViewModel {
     @Published var isLoading = false
     var validationResult = PassthroughSubject<Void, Error>()
     
-    lazy var isInputValid = Publishers.CombineLatest($login, $password)
+    private(set) lazy var isInputValid = Publishers.CombineLatest($login, $password)
         .map { $0.count > 2 && $1.count > 2 }
         .eraseToAnyPublisher()
     
