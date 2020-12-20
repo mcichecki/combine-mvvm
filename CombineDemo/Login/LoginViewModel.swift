@@ -12,7 +12,7 @@ final class LoginViewModel {
     @Published var login: String = ""
     @Published var password: String = ""
     @Published var isLoading = false
-    var validationResult = PassthroughSubject<Void, Error>()
+    let validationResult = PassthroughSubject<Void, Error>()
     
     private(set) lazy var isInputValid = Publishers.CombineLatest($login, $password)
         .map { $0.count > 2 && $1.count > 2 }
