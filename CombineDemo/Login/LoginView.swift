@@ -33,6 +33,14 @@ final class LoginView: UIView {
         return loginButton
     }()
     
+    var isLoading: Bool = false {
+        didSet {
+            isLoading ? startLoading() : finishLoading()
+        }
+    }
+    
+    lazy var activityIndicator = ActivityIndicatorView(style: .medium)
+    
     init() {
         super.init(frame: .zero)
         
@@ -45,7 +53,7 @@ final class LoginView: UIView {
     }
     
     private func addSubviews() {
-        [loginTextField, passwordTextField, loginButton]
+        [loginTextField, passwordTextField, loginButton, activityIndicator]
             .forEach {
                 addSubview($0)
                 $0.translatesAutoresizingMaskIntoConstraints = false
@@ -75,9 +83,28 @@ final class LoginView: UIView {
             loginButton.heightAnchor.constraint(equalToConstant: 30.0)
         ]
         
+        let activityIndicatorConstraints = [
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 50.0)
+        ]
+        
         [loginConstraints,
          passwordConstraints,
-         loginButtonConstraints]
+         loginButtonConstraints,
+         activityIndicatorConstraints]
             .forEach(NSLayoutConstraint.activate(_:))
+    }
+    
+    func startLoading() {
+        isUserInteractionEnabled = false
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func finishLoading() {
+        isUserInteractionEnabled = true
+        activityIndicator.stopAnimating()
     }
 }

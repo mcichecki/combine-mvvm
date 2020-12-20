@@ -29,7 +29,7 @@ class LoginViewModelTests: XCTestCase {
         subject.password = ""
         
         // when
-        _ = subject.validatedPassword.sink {
+        _ = subject.isInputValid.sink {
             // then
             XCTAssertFalse($0)
         }
@@ -41,7 +41,7 @@ class LoginViewModelTests: XCTestCase {
         subject.password = ""
         
         // when
-        _ = subject.validatedPassword.sink {
+        _ = subject.isInputValid.sink {
             // then
             XCTAssertFalse($0)
         }
@@ -53,7 +53,7 @@ class LoginViewModelTests: XCTestCase {
         subject.password = "password"
         
         // when
-        _ = subject.validatedPassword.sink {
+        _ = subject.isInputValid.sink {
             // then
             XCTAssertTrue($0)
         }
