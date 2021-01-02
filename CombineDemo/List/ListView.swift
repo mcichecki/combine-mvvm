@@ -23,14 +23,7 @@ final class ListView: UIView {
         return searchTextField
     }()
     
-    lazy var activityIndicationView: UIActivityIndicatorView = {
-        let activityIndicationView = UIActivityIndicatorView(style: .medium)
-        activityIndicationView.color = .white
-        activityIndicationView.backgroundColor = .darkGray
-        activityIndicationView.layer.cornerRadius = 5.0
-        activityIndicationView.hidesWhenStopped = true
-        return activityIndicationView
-    }()
+    lazy var activityIndicationView = ActivityIndicatorView(style: .medium)
     
     init() {
         super.init(frame: .zero)

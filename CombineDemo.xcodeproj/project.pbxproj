@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		518B0F35258F60D30076FFD6 /* MockCredentialsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518B0F34258F60D30076FFD6 /* MockCredentialsValidator.swift */; };
+		51ED8C4D258E1C2A000301C5 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ED8C4C258E1C2A000301C5 /* ActivityIndicatorView.swift */; };
 		CD03AA9A22CA5CDD00914AF4 /* InitialPublished.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03AA9922CA5CDD00914AF4 /* InitialPublished.swift */; };
 		CD1951E022CE910B00EEE445 /* CombineDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1951DF22CE910B00EEE445 /* CombineDemoTests.swift */; };
 		CDA610CA22CD55BA00DFECD7 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDA610C922CD55BA00DFECD7 /* ColorAssets.xcassets */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		518B0F34258F60D30076FFD6 /* MockCredentialsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCredentialsValidator.swift; sourceTree = "<group>"; };
+		51ED8C4C258E1C2A000301C5 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CD03AA9922CA5CDD00914AF4 /* InitialPublished.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialPublished.swift; sourceTree = "<group>"; };
 		CD1951DD22CE910B00EEE445 /* CombineDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombineDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD1951DF22CE910B00EEE445 /* CombineDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineDemoTests.swift; sourceTree = "<group>"; };
@@ -88,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		51ED8C4B258E1C16000301C5 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				51ED8C4C258E1C2A000301C5 /* ActivityIndicatorView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		CD03AA9822CA5CD400914AF4 /* Combine */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +114,7 @@
 			children = (
 				CD1951DF22CE910B00EEE445 /* CombineDemoTests.swift */,
 				CD1951E122CE910B00EEE445 /* Info.plist */,
+				518B0F34258F60D30076FFD6 /* MockCredentialsValidator.swift */,
 			);
 			path = CombineDemoTests;
 			sourceTree = "<group>";
@@ -153,6 +166,7 @@
 		CDCCEE9122AAFF3A00D1A8F9 /* CombineDemo */ = {
 			isa = PBXGroup;
 			children = (
+				51ED8C4B258E1C16000301C5 /* Shared */,
 				CDCCEE9222AAFF3A00D1A8F9 /* AppDelegate.swift */,
 				CDCCEE9422AAFF3A00D1A8F9 /* SceneDelegate.swift */,
 				CDA610CB22CD569A00DFECD7 /* Extensions */,
@@ -338,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1951E022CE910B00EEE445 /* CombineDemoTests.swift in Sources */,
+				518B0F35258F60D30076FFD6 /* MockCredentialsValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +372,7 @@
 				CDFDFB5722C934D300117F44 /* PlayerCellViewModel.swift in Sources */,
 				CDCE66CD22C8B74400B1D54C /* ListViewController.swift in Sources */,
 				CDCCEE9722AAFF3A00D1A8F9 /* LoginViewController.swift in Sources */,
+				51ED8C4D258E1C2A000301C5 /* ActivityIndicatorView.swift in Sources */,
 				CDCF8F5B22CE6E1F008A86CA /* UIButton+Validation.swift in Sources */,
 				CDCCEE9322AAFF3A00D1A8F9 /* AppDelegate.swift in Sources */,
 				CD03AA9A22CA5CDD00914AF4 /* InitialPublished.swift in Sources */,

@@ -53,10 +53,29 @@ class LoginViewController: UIViewController {
         }
         
         func bindViewModelToView() {
-            viewModel.validatedPassword
+            viewModel.isInputValid
                 .receive(on: RunLoop.main)
                 .assign(to: \.isValid, on: contentView.loginButton)
                 .store(in: &bindings)
+            
+            viewModel.$isLoading
+                .assign(to: \.isLoading, on: contentView)
+                .store(in: &bindings)
+            
+            viewModel.validationResult
+                .sink { completion in
+                    switch completion {
+                    case .failure:
+                        // Error can be handled here (e.g. alert)
+                        return
+                    case .finished:
+                        return
+                    }
+                } receiveValue: { [weak self] _ in
+                    self?.navigateToList()
+                }
+                .store(in: &bindings)
+            
         }
         
         bindViewToViewModel()
@@ -64,6 +83,10 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func onClick() {
+        viewModel.validateCredentials()
+    }
+    
+    private func navigateToList() {
         let listViewController = ListViewController()
         navigationController?.pushViewController(listViewController, animated: true)
     }
