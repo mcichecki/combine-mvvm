@@ -1,5 +1,5 @@
 //
-//  PlayerTableViewCell.swift
+//  PlayerCollectionCell.swift
 //  CombineDemo
 //
 //  Created by Michal Cichecki on 30/06/2019.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class PlayerTableViewCell: UITableViewCell {
+final class PlayerCollectionCell: UICollectionViewCell {
     static let identifier = "PlayerTableViewCell"
     
     var viewModel: PlayerCellViewModel! {
@@ -21,8 +21,8 @@ final class PlayerTableViewCell: UITableViewCell {
     
     lazy var teamLabel = UILabel()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
         
         addSubiews()
         setUpConstraints()

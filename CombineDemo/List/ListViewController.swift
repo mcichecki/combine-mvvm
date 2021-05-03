@@ -34,8 +34,8 @@ final class ListViewController: UIViewController {
     }
     
     private func setUpTableView() {
-        contentView.tableView.register(PlayerTableViewCell.self, forCellReuseIdentifier: PlayerTableViewCell.identifier)
-        contentView.tableView.dataSource = self
+        contentView.collectionView.register(PlayerCollectionCell.self, forCellWithReuseIdentifier: PlayerCollectionCell.identifier)
+        contentView.collectionView.dataSource = self
     }
     
     private func setUpBindings() {
@@ -49,7 +49,7 @@ final class ListViewController: UIViewController {
         
         func bindViewModelToView() {
             let viewModelsValueHandler: ([PlayerCellViewModel]) -> Void = { [weak self] _ in
-                self?.contentView.tableView.reloadData()
+                self?.contentView.collectionView.reloadData()
             }
             
             viewModel.$playersViewModels
@@ -89,17 +89,18 @@ final class ListViewController: UIViewController {
     }
 }
 
-extension ListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.playersViewModels.count
+// MARK: - UICollectionViewDataSource
+
+extension ListViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.playersViewModels.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: PlayerTableViewCell.identifier, for: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: PlayerCollectionCell.identifier, for: indexPath)
         
-        guard let playerCell = dequeuedCell as? PlayerTableViewCell else {
-            fatalError("Could not dequeue a cell")
-        }
+        guard let playerCell = dequeuedCell as? PlayerCollectionCell
+        else { fatalError("Could not dequeue a cell at \(indexPath)") }
         
         playerCell.viewModel = viewModel.playersViewModels[indexPath.row]
         return playerCell

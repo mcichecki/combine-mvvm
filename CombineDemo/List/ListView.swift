@@ -8,12 +8,7 @@
 import UIKit
 
 final class ListView: UIView {
-    // TODO: lazy var without block?
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        
-        return tableView
-    }()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     
     lazy var searchTextField: UITextField = {
         let searchTextField = UITextField()
@@ -30,6 +25,7 @@ final class ListView: UIView {
         
         addSubviews()
         setUpConstraints()
+        setUpViews()
     }
     
     required init?(coder: NSCoder) {
@@ -37,7 +33,7 @@ final class ListView: UIView {
     }
     
     func addSubviews() {
-        let subviews = [searchTextField, tableView, activityIndicationView]
+        let subviews = [searchTextField, collectionView, activityIndicationView]
         
         subviews.forEach {
             addSubview($0)
@@ -56,10 +52,10 @@ final class ListView: UIView {
         ]
         
         let tableViewConstraints = [
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: defaultMargin),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: defaultMargin),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
         
         let activityIndicatorViewConstraints = [
@@ -74,7 +70,7 @@ final class ListView: UIView {
     }
     
     func startLoading() {
-        tableView.isUserInteractionEnabled = false
+        collectionView.isUserInteractionEnabled = false
         searchTextField.isUserInteractionEnabled = false
         
         activityIndicationView.isHidden = false
@@ -82,9 +78,27 @@ final class ListView: UIView {
     }
     
     func finishLoading() {
-        tableView.isUserInteractionEnabled = true
+        collectionView.isUserInteractionEnabled = true
         searchTextField.isUserInteractionEnabled = true
         
         activityIndicationView.stopAnimating()
+    }
+    
+    private func setUpViews() {
+        collectionView.backgroundColor = .white
+    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let size = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(40))
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        section.interGroupSpacing = 5
+        
+        return UICollectionViewCompositionalLayout(section: section)
     }
 }
