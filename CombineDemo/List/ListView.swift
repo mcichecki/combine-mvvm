@@ -9,15 +9,7 @@ import UIKit
 
 final class ListView: UIView {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-    
-    lazy var searchTextField: UITextField = {
-        let searchTextField = UITextField()
-        searchTextField.backgroundColor = .white
-        searchTextField.placeholder = "NBA Player"
-        searchTextField.textColor = .darkGray
-        return searchTextField
-    }()
-    
+    lazy var searchTextField = UITextField()
     lazy var activityIndicationView = ActivityIndicatorView(style: .medium)
     
     init() {
@@ -32,41 +24,13 @@ final class ListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addSubviews() {
+    private func addSubviews() {
         let subviews = [searchTextField, collectionView, activityIndicationView]
         
         subviews.forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-    }
-    
-    func setUpConstraints() {
-        let defaultMargin: CGFloat = 4.0
-        
-        let searchTextFieldConstraints = [
-            searchTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: defaultMargin),
-            searchTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: defaultMargin),
-            searchTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -defaultMargin),
-            searchTextField.heightAnchor.constraint(equalToConstant: 30.0)
-        ]
-        
-        let tableViewConstraints = [
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: defaultMargin),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ]
-        
-        let activityIndicatorViewConstraints = [
-            activityIndicationView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            activityIndicationView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            activityIndicationView.heightAnchor.constraint(equalToConstant: 50),
-            activityIndicationView.widthAnchor.constraint(equalToConstant: 50.0)
-        ]
-        
-        [searchTextFieldConstraints, tableViewConstraints, activityIndicatorViewConstraints]
-            .forEach(NSLayoutConstraint.activate(_:))
     }
     
     func startLoading() {
@@ -84,9 +48,33 @@ final class ListView: UIView {
         activityIndicationView.stopAnimating()
     }
     
+    private func setUpConstraints() {
+        let defaultMargin: CGFloat = 4.0
+        
+        NSLayoutConstraint.activate([
+            searchTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: defaultMargin),
+            searchTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: defaultMargin),
+            searchTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -defaultMargin),
+            searchTextField.heightAnchor.constraint(equalToConstant: 30.0),
+            
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: defaultMargin),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            activityIndicationView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicationView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicationView.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicationView.widthAnchor.constraint(equalToConstant: 50.0)
+        ])
+    }
+    
     private func setUpViews() {
         collectionView.backgroundColor = .white
         searchTextField.autocorrectionType = .no
+        searchTextField.backgroundColor = .white
+        searchTextField.placeholder = "NBA Player"
+        searchTextField.textColor = .darkGray
     }
     
     private func createLayout() -> UICollectionViewLayout {

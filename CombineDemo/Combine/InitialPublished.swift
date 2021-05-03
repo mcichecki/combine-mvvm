@@ -15,12 +15,8 @@ struct InitialPublished<Value>: Publisher {
     private let subject: CurrentValueSubject<Output, Failure>
     
     var wrappedValue: Value {
-        get {
-            subject.value
-        }
-        set {
-            subject.send(newValue)
-        }
+        get { subject.value }
+        set { subject.send(newValue) }
     }
     
     init(wrappedValue initialValue: Value) {

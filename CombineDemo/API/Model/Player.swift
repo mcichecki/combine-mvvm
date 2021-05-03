@@ -11,10 +11,6 @@ struct Player: Equatable, Hashable, Decodable {
     var firstName: String
     var lastName: String
     let team: Team
-    
-
-    
-
 }
 
 extension Player {

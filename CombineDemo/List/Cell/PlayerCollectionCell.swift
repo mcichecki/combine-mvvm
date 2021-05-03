@@ -12,13 +12,10 @@ final class PlayerCollectionCell: UICollectionViewCell {
     static let identifier = "PlayerTableViewCell"
     
     var viewModel: PlayerCellViewModel! {
-        didSet {
-            setUpViewModel()
-        }
+        didSet { setUpViewModel() }
     }
     
     lazy var playerNameLabel = UILabel()
-    
     lazy var teamLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -42,20 +39,16 @@ final class PlayerCollectionCell: UICollectionViewCell {
     }
     
     private func setUpConstraints() {
-        let playerNameLabelConstraints = [
+        NSLayoutConstraint.activate([
             playerNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
             playerNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
-            playerNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.0)
-        ]
-        
-        let teamLabelConstraints = [
+            playerNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.0),
+            
             teamLabel.centerYAnchor.constraint(equalTo: playerNameLabel.centerYAnchor),
             teamLabel.leadingAnchor.constraint(equalTo: playerNameLabel.trailingAnchor, constant: 10.0),
             teamLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
             teamLabel.heightAnchor.constraint(equalTo: playerNameLabel.heightAnchor)
-        ]
-        
-        [playerNameLabelConstraints, teamLabelConstraints].forEach(NSLayoutConstraint.activate(_:))
+        ])
     }
     
     private func setUpViewModel() {

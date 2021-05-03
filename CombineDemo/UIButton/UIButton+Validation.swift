@@ -9,9 +9,7 @@ import UIKit
 
 extension UIButton {
     var isValid: Bool {
-        get {
-            return isEnabled && backgroundColor == .valid
-        }
+        get { isEnabled && backgroundColor == .valid }
         set {
             backgroundColor = newValue ? .valid : .nonValid
             isEnabled = newValue

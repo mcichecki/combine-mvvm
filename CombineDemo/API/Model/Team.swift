@@ -7,17 +7,6 @@
 
 import Foundation
 
-struct Team: Equatable, Hashable {
+struct Team: Decodable, Equatable, Hashable {
     var abbreviation: String
-}
-
-extension Team: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case abbreviation
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        abbreviation = try container.decode(String.self, forKey: .abbreviation)
-    }
 }
