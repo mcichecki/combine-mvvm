@@ -75,16 +75,15 @@ final class LoginView: UIView {
     }
     
     private func setUpViews() {
-        loginTextField.backgroundColor = .white
+        backgroundColor = .background
+        loginTextField.backgroundColor = .systemBackground
         loginTextField.placeholder = "login"
-        loginTextField.textColor = .darkGray
         
-        passwordTextField.backgroundColor = .white
+        passwordTextField.backgroundColor = .systemBackground
         passwordTextField.placeholder = "password"
-        passwordTextField.textColor = .darkGray
         
         loginButton.setTitle("Log in", for: UIControl.State())
         loginButton.setTitleColor(.white, for: UIControl.State())
-        loginButton.backgroundColor = .red
+        loginButton.backgroundColor = .nonValid
     }
 }

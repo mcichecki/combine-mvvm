@@ -70,11 +70,11 @@ final class ListView: UIView {
     }
     
     private func setUpViews() {
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .background
+        
         searchTextField.autocorrectionType = .no
-        searchTextField.backgroundColor = .white
+        searchTextField.backgroundColor = .background
         searchTextField.placeholder = "NBA Player"
-        searchTextField.textColor = .darkGray
     }
     
     private func createLayout() -> UICollectionViewLayout {
