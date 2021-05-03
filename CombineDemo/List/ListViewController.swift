@@ -9,9 +9,14 @@ import UIKit
 import Combine
 
 final class ListViewController: UIViewController {
+    private typealias DataSource = UICollectionViewDiffableDataSource<ListViewModel.Section, Player>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<ListViewModel.Section, Player>
+    
     private lazy var contentView = ListView()
     private let viewModel: ListViewModel
     private var bindings = Set<AnyCancellable>()
+    
+    private var dataSource: DataSource!
     
     init(viewModel: ListViewModel = ListViewModel()) {
         self.viewModel = viewModel
@@ -30,12 +35,14 @@ final class ListViewController: UIViewController {
         view.backgroundColor = .darkGray
         
         setUpTableView()
+        configureDataSource()
         setUpBindings()
     }
     
     private func setUpTableView() {
-        contentView.collectionView.register(PlayerCollectionCell.self, forCellWithReuseIdentifier: PlayerCollectionCell.identifier)
-        contentView.collectionView.dataSource = self
+        contentView.collectionView.register(
+            PlayerCollectionCell.self,
+            forCellWithReuseIdentifier: PlayerCollectionCell.identifier)
     }
     
     private func setUpBindings() {
@@ -48,13 +55,11 @@ final class ListViewController: UIViewController {
         }
         
         func bindViewModelToView() {
-            let viewModelsValueHandler: ([PlayerCellViewModel]) -> Void = { [weak self] _ in
-                self?.contentView.collectionView.reloadData()
-            }
-            
-            viewModel.$playersViewModels
+            viewModel.$players
                 .receive(on: RunLoop.main)
-                .sink(receiveValue: viewModelsValueHandler)
+                .sink(receiveValue: { [weak self] _ in
+                    self?.updateSections()
+                })
                 .store(in: &bindings)
             
             let stateValueHandler: (ListViewModelState) -> Void = { [weak self] state in
@@ -87,22 +92,27 @@ final class ListViewController: UIViewController {
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil)
     }
+    
+    private func updateSections() {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.players])
+        snapshot.appendItems(viewModel.players)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
 
-extension ListViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.playersViewModels.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let dequeuedCell = collectionView.dequeueReusableCell(withReuseIdentifier: PlayerCollectionCell.identifier, for: indexPath)
-        
-        guard let playerCell = dequeuedCell as? PlayerCollectionCell
-        else { fatalError("Could not dequeue a cell at \(indexPath)") }
-        
-        playerCell.viewModel = viewModel.playersViewModels[indexPath.row]
-        return playerCell
+extension ListViewController {
+    private func configureDataSource() {
+        dataSource = DataSource(
+            collectionView: contentView.collectionView,
+            cellProvider: { (collectionView, indexPath, player) -> UICollectionViewCell? in
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: PlayerCollectionCell.identifier,
+                    for: indexPath) as? PlayerCollectionCell
+                cell?.viewModel = PlayerCellViewModel(player: player)
+                return cell
+            })
     }
 }

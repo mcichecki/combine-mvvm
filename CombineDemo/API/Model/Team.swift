@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Team {
+struct Team: Equatable, Hashable {
     var abbreviation: String
 }
 

@@ -86,6 +86,7 @@ final class ListView: UIView {
     
     private func setUpViews() {
         collectionView.backgroundColor = .white
+        searchTextField.autocorrectionType = .no
     }
     
     private func createLayout() -> UICollectionViewLayout {
