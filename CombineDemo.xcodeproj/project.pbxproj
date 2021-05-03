@@ -13,6 +13,7 @@
 		CD1951E022CE910B00EEE445 /* CombineDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1951DF22CE910B00EEE445 /* CombineDemoTests.swift */; };
 		CDA610CA22CD55BA00DFECD7 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDA610C922CD55BA00DFECD7 /* ColorAssets.xcassets */; };
 		CDA610CE22CD56BC00DFECD7 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA610CD22CD56BC00DFECD7 /* UIColor+Colors.swift */; };
+		CDC2721B2640938100260841 /* PlayerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC2721A2640938100260841 /* PlayerCollectionCell.swift */; };
 		CDCCEE9322AAFF3A00D1A8F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCCEE9222AAFF3A00D1A8F9 /* AppDelegate.swift */; };
 		CDCCEE9522AAFF3A00D1A8F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCCEE9422AAFF3A00D1A8F9 /* SceneDelegate.swift */; };
 		CDCCEE9722AAFF3A00D1A8F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCCEE9622AAFF3A00D1A8F9 /* LoginViewController.swift */; };
@@ -30,7 +31,6 @@
 		CDCF8F5B22CE6E1F008A86CA /* UIButton+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF8F5A22CE6E1F008A86CA /* UIButton+Validation.swift */; };
 		CDF9286322CD195D001EF276 /* UITextField+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF9286222CD195D001EF276 /* UITextField+Publisher.swift */; };
 		CDFDFB5722C934D300117F44 /* PlayerCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDFB5622C934D300117F44 /* PlayerCellViewModel.swift */; };
-		CDFDFB5922C934E300117F44 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFDFB5822C934E300117F44 /* PlayerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +52,7 @@
 		CD1951E122CE910B00EEE445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDA610C922CD55BA00DFECD7 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
 		CDA610CD22CD56BC00DFECD7 /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
+		CDC2721A2640938100260841 /* PlayerCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCollectionCell.swift; sourceTree = "<group>"; };
 		CDCCEE8F22AAFF3A00D1A8F9 /* CombineDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCCEE9222AAFF3A00D1A8F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDCCEE9422AAFF3A00D1A8F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		CDCF8F5A22CE6E1F008A86CA /* UIButton+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Validation.swift"; sourceTree = "<group>"; };
 		CDF9286222CD195D001EF276 /* UITextField+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Publisher.swift"; sourceTree = "<group>"; };
 		CDFDFB5622C934D300117F44 /* PlayerCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellViewModel.swift; sourceTree = "<group>"; };
-		CDFDFB5822C934E300117F44 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,8 +240,8 @@
 		CDFDFB5522C934C400117F44 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				CDC2721A2640938100260841 /* PlayerCollectionCell.swift */,
 				CDFDFB5622C934D300117F44 /* PlayerCellViewModel.swift */,
-				CDFDFB5822C934E300117F44 /* PlayerTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -366,6 +366,7 @@
 				CDF9286322CD195D001EF276 /* UITextField+Publisher.swift in Sources */,
 				CDCE66D122C8B7B300B1D54C /* ListView.swift in Sources */,
 				CDCCEEAA22AB01A500D1A8F9 /* LoginViewModel.swift in Sources */,
+				CDC2721B2640938100260841 /* PlayerCollectionCell.swift in Sources */,
 				CDCE66DE22C8C9D200B1D54C /* PlayerData.swift in Sources */,
 				CDCCEEA722AB019100D1A8F9 /* LoginView.swift in Sources */,
 				CDCE66CF22C8B7A500B1D54C /* ListViewModel.swift in Sources */,
@@ -377,7 +378,6 @@
 				CDCCEE9322AAFF3A00D1A8F9 /* AppDelegate.swift in Sources */,
 				CD03AA9A22CA5CDD00914AF4 /* InitialPublished.swift in Sources */,
 				CDCCEE9522AAFF3A00D1A8F9 /* SceneDelegate.swift in Sources */,
-				CDFDFB5922C934E300117F44 /* PlayerTableViewCell.swift in Sources */,
 				CDCE66D822C8BABB00B1D54C /* PlayersService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

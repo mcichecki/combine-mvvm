@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Player {
+struct Player: Equatable, Hashable, Decodable {
     var firstName: String
     var lastName: String
     let team: Team
 }
 
-extension Player: Decodable {
-    private enum CodingKeys: String, CodingKey {
+extension Player {
+    enum CodingKeys: String, CodingKey {
         case first_name
         case last_name
         case team

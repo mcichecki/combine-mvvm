@@ -15,8 +15,11 @@ enum ListViewModelState {
 }
 
 final class ListViewModel {
+    enum Section { case players }
+    
     @Published var searchText: String = ""
-    @Published private(set) var playersViewModels: [PlayerCellViewModel] = []
+    @Published private(set) var playersViewModels: [PlayerCellViewModel] = [] // not used anymore
+    @Published private(set) var players: [Player] = []
     @Published private(set) var state: ListViewModelState = .loading
     
     private let playersService: PlayersServiceProtocol
@@ -41,7 +44,7 @@ final class ListViewModel {
         }
         
         let searchTermValueHandler: ([Player]) -> Void = { [weak self] players in
-            self?.playersViewModels = players.map { PlayerCellViewModel(player: $0) }
+            self?.players = players
         }
         
         playersService

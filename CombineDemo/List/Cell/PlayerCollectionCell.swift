@@ -1,5 +1,5 @@
 //
-//  PlayerTableViewCell.swift
+//  PlayerCollectionCell.swift
 //  CombineDemo
 //
 //  Created by Michal Cichecki on 30/06/2019.
@@ -8,21 +8,18 @@
 import UIKit
 import Combine
 
-final class PlayerTableViewCell: UITableViewCell {
+final class PlayerCollectionCell: UICollectionViewCell {
     static let identifier = "PlayerTableViewCell"
     
     var viewModel: PlayerCellViewModel! {
-        didSet {
-            setUpViewModel()
-        }
+        didSet { setUpViewModel() }
     }
     
     lazy var playerNameLabel = UILabel()
-    
     lazy var teamLabel = UILabel()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
         
         addSubiews()
         setUpConstraints()
@@ -42,20 +39,16 @@ final class PlayerTableViewCell: UITableViewCell {
     }
     
     private func setUpConstraints() {
-        let playerNameLabelConstraints = [
+        NSLayoutConstraint.activate([
             playerNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
             playerNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10.0),
-            playerNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.0)
-        ]
-        
-        let teamLabelConstraints = [
+            playerNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.0),
+            
             teamLabel.centerYAnchor.constraint(equalTo: playerNameLabel.centerYAnchor),
             teamLabel.leadingAnchor.constraint(equalTo: playerNameLabel.trailingAnchor, constant: 10.0),
             teamLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10.0),
             teamLabel.heightAnchor.constraint(equalTo: playerNameLabel.heightAnchor)
-        ]
-        
-        [playerNameLabelConstraints, teamLabelConstraints].forEach(NSLayoutConstraint.activate(_:))
+        ])
     }
     
     private func setUpViewModel() {

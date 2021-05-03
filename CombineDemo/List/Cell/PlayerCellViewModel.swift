@@ -10,7 +10,6 @@ import Combine
 
 final class PlayerCellViewModel {
     @Published var playerName: String = ""
-    
     @Published var team: String = ""
         
     private let player: Player

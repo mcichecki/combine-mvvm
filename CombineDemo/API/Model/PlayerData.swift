@@ -7,17 +7,6 @@
 
 import Foundation
 
-struct PlayerData {
+struct PlayerData: Decodable {
     let data: [Player]
-}
-
-extension PlayerData: Decodable {
-    private enum CodingKeys: String, CodingKey {
-        case data
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.decode([Player].self, forKey: .data)
-    }
 }
