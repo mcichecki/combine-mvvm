@@ -16,7 +16,8 @@ final class MockCredentialsValidator: CredentialsValidatorProtocol {
     func validateCredentials(
         login: String,
         password: String,
-        completion: @escaping (Result<(), Error>) -> Void) {
+        completion: @escaping (Result<(), Error>) -> Void
+    ) {
         validateCredentialsCalled = true
         validateCredentialsClosure?(completion)
     }
