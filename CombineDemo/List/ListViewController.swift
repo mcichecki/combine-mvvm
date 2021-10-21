@@ -38,6 +38,11 @@ final class ListViewController: UIViewController {
         configureDataSource()
         setUpBindings()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.retrySearch()
+    }
     
     private func setUpTableView() {
         contentView.collectionView.register(
@@ -50,7 +55,9 @@ final class ListViewController: UIViewController {
             contentView.searchTextField.textPublisher
                 .debounce(for: 0.5, scheduler: RunLoop.main)
                 .removeDuplicates()
-                .assign(to: \.searchText, on: viewModel)
+                .sink { [weak viewModel] in
+                    viewModel?.search(query: $0)
+                }
                 .store(in: &bindings)
         }
         
