@@ -118,6 +118,6 @@ class LoginViewModelTests: XCTestCase {
 
 // MARK: - MockError
 
-private enum MockError: Error {
+enum MockError: Error {
     case error
 }

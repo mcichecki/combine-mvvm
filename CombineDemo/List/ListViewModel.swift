@@ -8,38 +8,50 @@
 import Foundation
 import Combine
 
-enum ListViewModelState {
+enum ListViewModelError: Error, Equatable {
+    case playersFetch
+}
+
+enum ListViewModelState: Equatable {
     case loading
     case finishedLoading
-    case error(Error)
+    case error(ListViewModelError)
 }
 
 final class ListViewModel {
     enum Section { case players }
-    
-    @Published var searchText: String = ""
-    @Published private(set) var playersViewModels: [PlayerCellViewModel] = [] // not used anymore
+
     @Published private(set) var players: [Player] = []
     @Published private(set) var state: ListViewModelState = .loading
+    private var currentSearchQuery: String = ""
     
     private let playersService: PlayersServiceProtocol
     private var bindings = Set<AnyCancellable>()
     
     init(playersService: PlayersServiceProtocol = PlayersService()) {
         self.playersService = playersService
-        
-        $searchText
-            .sink { [weak self] in self?.fetchPlayers(with: $0) }
-            .store(in: &bindings)
     }
-    
-    func fetchPlayers(with searchTerm: String?) {
+
+    func search(query: String) {
+        currentSearchQuery = query
+        fetchPlayers(with: query)
+    }
+
+    func retrySearch() {
+        fetchPlayers(with: currentSearchQuery)
+    }
+}
+
+extension ListViewModel {
+    private func fetchPlayers(with searchTerm: String?) {
         state = .loading
         
         let searchTermCompletionHandler: (Subscribers.Completion<Error>) -> Void = { [weak self] completion in
             switch completion {
-            case .failure(let error): self?.state = .error(error)
-            case .finished: self?.state = .finishedLoading
+            case .failure:
+                self?.state = .error(.playersFetch)
+            case .finished:
+                self?.state = .finishedLoading
             }
         }
         
