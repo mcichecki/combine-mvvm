@@ -11,7 +11,6 @@
 		51ED8C4D258E1C2A000301C5 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ED8C4C258E1C2A000301C5 /* ActivityIndicatorView.swift */; };
 		CD03AA9A22CA5CDD00914AF4 /* InitialPublished.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03AA9922CA5CDD00914AF4 /* InitialPublished.swift */; };
 		CD1951E022CE910B00EEE445 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1951DF22CE910B00EEE445 /* LoginViewModelTests.swift */; };
-		CD9B81842721E41B008E648F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B81832721E41B008E648F /* Constants.swift */; };
 		CD9B81862721E4FB008E648F /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B81852721E4FB008E648F /* ListViewModelTests.swift */; };
 		CD9B818A2721E54F008E648F /* MockPlayersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B81892721E54F008E648F /* MockPlayersService.swift */; };
 		CDA610CA22CD55BA00DFECD7 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDA610C922CD55BA00DFECD7 /* ColorAssets.xcassets */; };
@@ -402,7 +401,6 @@
 				CDCCEE9722AAFF3A00D1A8F9 /* LoginViewController.swift in Sources */,
 				51ED8C4D258E1C2A000301C5 /* ActivityIndicatorView.swift in Sources */,
 				CDCF8F5B22CE6E1F008A86CA /* UIButton+Validation.swift in Sources */,
-				CD9B81842721E41B008E648F /* Constants.swift in Sources */,
 				CDCCEE9322AAFF3A00D1A8F9 /* AppDelegate.swift in Sources */,
 				CD03AA9A22CA5CDD00914AF4 /* InitialPublished.swift in Sources */,
 				CDCCEE9522AAFF3A00D1A8F9 /* SceneDelegate.swift in Sources */,
