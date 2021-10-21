@@ -10,7 +10,7 @@
 		518B0F35258F60D30076FFD6 /* MockCredentialsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518B0F34258F60D30076FFD6 /* MockCredentialsValidator.swift */; };
 		51ED8C4D258E1C2A000301C5 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51ED8C4C258E1C2A000301C5 /* ActivityIndicatorView.swift */; };
 		CD03AA9A22CA5CDD00914AF4 /* InitialPublished.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03AA9922CA5CDD00914AF4 /* InitialPublished.swift */; };
-		CD1951E022CE910B00EEE445 /* CombineDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1951DF22CE910B00EEE445 /* CombineDemoTests.swift */; };
+		CD1951E022CE910B00EEE445 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1951DF22CE910B00EEE445 /* LoginViewModelTests.swift */; };
 		CDA610CA22CD55BA00DFECD7 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDA610C922CD55BA00DFECD7 /* ColorAssets.xcassets */; };
 		CDA610CE22CD56BC00DFECD7 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA610CD22CD56BC00DFECD7 /* UIColor+Colors.swift */; };
 		CDC2721B2640938100260841 /* PlayerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC2721A2640938100260841 /* PlayerCollectionCell.swift */; };
@@ -48,7 +48,7 @@
 		51ED8C4C258E1C2A000301C5 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CD03AA9922CA5CDD00914AF4 /* InitialPublished.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialPublished.swift; sourceTree = "<group>"; };
 		CD1951DD22CE910B00EEE445 /* CombineDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombineDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD1951DF22CE910B00EEE445 /* CombineDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineDemoTests.swift; sourceTree = "<group>"; };
+		CD1951DF22CE910B00EEE445 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		CD1951E122CE910B00EEE445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDA610C922CD55BA00DFECD7 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
 		CDA610CD22CD56BC00DFECD7 /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		CD1951DE22CE910B00EEE445 /* CombineDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				CD1951DF22CE910B00EEE445 /* CombineDemoTests.swift */,
+				CD1951DF22CE910B00EEE445 /* LoginViewModelTests.swift */,
 				CD1951E122CE910B00EEE445 /* Info.plist */,
 				518B0F34258F60D30076FFD6 /* MockCredentialsValidator.swift */,
 			);
@@ -351,7 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD1951E022CE910B00EEE445 /* CombineDemoTests.swift in Sources */,
+				CD1951E022CE910B00EEE445 /* LoginViewModelTests.swift in Sources */,
 				518B0F35258F60D30076FFD6 /* MockCredentialsValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
